@@ -1,0 +1,27 @@
+{
+  "name": "UmbracoProjectWizard",
+  "version": "0.0.0",
+  "description": "Project wizard for Umbraco",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mantus667/UmbracoProjectWizard.git"
+  },
+  "keywords": [
+    "Nuke",
+    "Build",
+    "Coverlet",
+    "Github",
+	"Umbraco",
+	"CliWrap",
+	"Spectre.Console"
+  ],
+  "author": "David Brendel",
+  "license": "",
+  "bugs": {
+    "url": "https://github.com/Mantus667/UmbracoProjectWizard/issues"
+  },
+  "homepage": "https://github.com/Mantus667/UmbracoProjectWizard#readme",
+  "devDependencies": {
+    "git-commit-msg-linter": "^3.2.8"
+  }
+}
