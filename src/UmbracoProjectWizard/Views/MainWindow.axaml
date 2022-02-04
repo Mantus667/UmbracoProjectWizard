@@ -1,0 +1,43 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:UmbracoProjectWizard.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="UmbracoProjectWizard.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Umbraco Project Wizard"
+		TransparencyLevelHint="AcrylicBlur"
+        Background="Transparent"
+		ExtendClientAreaToDecorationsHint="True"
+		WindowStartupLocation="CenterScreen">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<Window.Styles>
+		<StyleInclude Source="/CustomStyles.axaml" />
+	</Window.Styles>
+
+	<Panel>
+		<ExperimentalAcrylicBorder IsHitTestVisible="False">
+			<ExperimentalAcrylicBorder.Material>
+				<ExperimentalAcrylicMaterial
+					BackgroundSource="Digger"
+					TintColor="Black"
+					TintOpacity="1"
+					MaterialOpacity="0.90" />
+			</ExperimentalAcrylicBorder.Material>
+		</ExperimentalAcrylicBorder>
+		<StackPanel>
+			<TextBlock Foreground="Orange" 
+				Margin="10 5 0 0"
+				HorizontalAlignment="Left"
+				FontSize="16" Width="300">Umbraco Project Wizard</TextBlock>
+			<ContentControl Padding="0 20 0 20"
+				Height="{Binding $parent[StackPanel].Bounds.Height}"
+				Content="{Binding Content}"/>
+		</StackPanel>
+	</Panel>
+</Window>

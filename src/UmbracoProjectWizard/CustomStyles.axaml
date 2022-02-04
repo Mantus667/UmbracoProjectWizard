@@ -1,0 +1,21 @@
+﻿<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Design.PreviewWith>
+        <Border Padding="20">
+            <!-- Add Controls for Previewer Here -->
+        </Border>
+    </Design.PreviewWith>
+
+    <!-- Add Styles Here -->
+	<Style Selector=".Hero TextBlock.h1">
+		<Setter Property="FontSize" Value="60"/>
+		<Setter Property="FontWeight" Value="Bold"/>
+		<Setter Property="Foreground" Value="OrangeRed"/>
+	</Style>
+	<Style Selector=".GeneralInfos TextBlock">
+		<Setter Property="Foreground" Value="White" />
+	</Style>
+	<Style Selector=".GeneralInfos Button">
+		<Setter Property="Foreground" Value="White" />
+	</Style>
+</Styles>

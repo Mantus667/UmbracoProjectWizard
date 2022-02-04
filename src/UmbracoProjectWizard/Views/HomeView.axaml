@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="UmbracoProjectWizard.Views.HomeView">
+	
+	
+	<StackPanel VerticalAlignment="Center" Classes="Hero">
+		<TextBlock Classes="h1" Margin="0 0 0 15"
+			HorizontalAlignment="Center"
+				VerticalAlignment="Center">
+			Umbraco Project Wizard
+		</TextBlock>
+		<TextBlock HorizontalAlignment="Center"
+				VerticalAlignment="Center"
+				Foreground="Orange">
+This wizard helps you create Umbraco projects by using the dotnet cli.
+It let's you set all flags for the Umbraco template. Also you can specify packages,
+that should be installed, after the project is created. All in a nice UI.
+		</TextBlock>
+		<Button Margin="0 15 0 0" HorizontalAlignment="Center"
+			Background="LightGreen"
+			Command="{Binding $parent[Window].DataContext.StartWizard}">Start Wizard</Button>
+	</StackPanel>
+</UserControl>
