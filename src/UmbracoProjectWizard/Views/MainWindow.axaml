@@ -3,41 +3,46 @@
         xmlns:vm="using:UmbracoProjectWizard.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+        xmlns:pages="clr-namespace:UmbracoProjectWizard.Pages"
+        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+		xmlns:local="using:UmbracoProjectWizard"
+		mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         x:Class="UmbracoProjectWizard.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Umbraco Project Wizard"
-		TransparencyLevelHint="AcrylicBlur"
-        Background="Transparent"
-		ExtendClientAreaToDecorationsHint="True"
-		WindowStartupLocation="CenterScreen">
+        Title="Umbraco Project Wizard">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
 	<Window.Styles>
-		<StyleInclude Source="/CustomStyles.axaml" />
+		<Style Selector="TextBlock.Subheadline">
+			<Setter Property="Margin" Value="0, 16" />
+		</Style>
+		<Style Selector="TextBlock.Subheadline2">
+			<Setter Property="Margin" Value="0, 8" />
+		</Style>
+		<Style Selector="TextBlock.Content">
+			<Setter Property="Margin" Value="0, 4" />
+			<Setter Property="HorizontalAlignment" Value="Left" />
+		</Style>
 	</Window.Styles>
 
-	<Panel>
-		<ExperimentalAcrylicBorder IsHitTestVisible="False">
-			<ExperimentalAcrylicBorder.Material>
-				<ExperimentalAcrylicMaterial
-					BackgroundSource="Digger"
-					TintColor="Black"
-					TintOpacity="1"
-					MaterialOpacity="0.90" />
-			</ExperimentalAcrylicBorder.Material>
-		</ExperimentalAcrylicBorder>
-		<StackPanel>
-			<TextBlock Foreground="Orange" 
-				Margin="10 5 0 0"
-				HorizontalAlignment="Left"
-				FontSize="16" Width="300">Umbraco Project Wizard</TextBlock>
-			<ContentControl Padding="0 20 0 20"
-				Height="{Binding $parent[StackPanel].Bounds.Height}"
-				Content="{Binding Content}"/>
-		</StackPanel>
-	</Panel>
+	<styles:SnackbarHost HostName="Root">
+		<DockPanel LastChildFill="true">
+			<ScrollViewer Name="mainScroller"
+						  DockPanel.Dock="Top"
+						  HorizontalContentAlignment="Stretch"
+						  HorizontalAlignment="Stretch"
+						  HorizontalScrollBarVisibility="Disabled">
+				<Border HorizontalAlignment="Stretch"
+						VerticalAlignment="Stretch">
+					<styles:Card Width="800" Padding="0, 15" VerticalAlignment="Center">
+						<ContentControl Content="{Binding Content}"/>
+					</styles:Card>
+				</Border>
+			</ScrollViewer>
+		</DockPanel>
+	</styles:SnackbarHost>
 </Window>

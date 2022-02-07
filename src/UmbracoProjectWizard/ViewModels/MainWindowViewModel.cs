@@ -4,18 +4,16 @@ namespace UmbracoProjectWizard.ViewModels;
 
 public class MainWindowViewModel : ViewModelBase
 {
-    private ViewModelBase _content;
+    private ViewModelBase? _content;
 
-#pragma warning disable CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Erwägen Sie die Deklaration als Nullable.
     public MainWindowViewModel()
-#pragma warning restore CS8618 // Ein Non-Nullable-Feld muss beim Beenden des Konstruktors einen Wert ungleich NULL enthalten. Erwägen Sie die Deklaration als Nullable.
     {
         Content = new HomeViewModel();
     }
 
     public ViewModelBase Content
     {
-        get => _content;
+        get => _content ?? new HomeViewModel();
         private set => this.RaiseAndSetIfChanged(ref _content, value);
     }
 
