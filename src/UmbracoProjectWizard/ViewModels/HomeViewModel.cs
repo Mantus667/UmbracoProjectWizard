@@ -1,10 +1,11 @@
-﻿using ReactiveUI;
-using System;
-using System.Reactive;
-using System.Windows.Input;
-
 namespace UmbracoProjectWizard.ViewModels;
+using ReactiveUI;
 
-public class HomeViewModel : ViewModelBase
+public class HomeViewModel : ReactiveObject, IRoutableViewModel
 {
+    public HomeViewModel(IScreen screen) => HostScreen = screen;
+
+    public string? UrlPathSegment { get; } = nameof(HomeViewModel);
+
+    public IScreen HostScreen { get; }
 }

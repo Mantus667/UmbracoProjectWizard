@@ -1,19 +1,11 @@
-using Avalonia;
-using Avalonia.Controls;
+namespace UmbracoProjectWizard.Views;
 using Avalonia.Markup.Xaml;
+using Avalonia.ReactiveUI;
+using UmbracoProjectWizard.ViewModels;
 
-namespace UmbracoProjectWizard.Views
+public partial class HomeView : ReactiveUserControl<HomeViewModel>
 {
-    public partial class HomeView : UserControl
-    {
-        public HomeView()
-        {
-            InitializeComponent();
-        }
+    public HomeView() => InitializeComponent();
 
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
-    }
+    private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }

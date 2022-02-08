@@ -1,19 +1,11 @@
-using Avalonia;
-using Avalonia.Controls;
+namespace UmbracoProjectWizard.Views;
 using Avalonia.Markup.Xaml;
+using Avalonia.ReactiveUI;
+using UmbracoProjectWizard.ViewModels;
 
-namespace UmbracoProjectWizard.Views
+public partial class GeneralInfosView : ReactiveUserControl<GeneralInfosViewModel>
 {
-    public partial class GeneralInfosView : UserControl
-    {
-        public GeneralInfosView()
-        {
-            InitializeComponent();
-        }
+    public GeneralInfosView() => InitializeComponent();
 
-        private void InitializeComponent()
-        {
-            AvaloniaXamlLoader.Load(this);
-        }
-    }
+    private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }

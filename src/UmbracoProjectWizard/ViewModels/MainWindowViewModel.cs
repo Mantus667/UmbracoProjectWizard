@@ -1,29 +1,19 @@
-﻿using ReactiveUI;
-
 namespace UmbracoProjectWizard.ViewModels;
+using ReactiveUI;
 
-public class MainWindowViewModel : ViewModelBase
+public class MainWindowViewModel : ReactiveObject, IScreen
 {
-    private ViewModelBase? _content;
+    //private readonly WizardContext _wizardContext;
 
-    public MainWindowViewModel()
+    public MainWindowViewModel()//WizardContext wizardContext)
     {
-        Content = new HomeViewModel();
+        //_wizardContext = wizardContext;
+        Router.Navigate.Execute(new HomeViewModel(this));
     }
 
-    public ViewModelBase Content
-    {
-        get => _content ?? new HomeViewModel();
-        private set => this.RaiseAndSetIfChanged(ref _content, value);
-    }
+    public RoutingState Router { get; } = new RoutingState();
 
-    public void ShowHomeView()
-    {
-        Content = new HomeViewModel();
-    }
+    //public void ShowHomeView() => Content = new HomeViewModel();
 
-    public void StartWizard()
-    {
-        Content = new GeneralInfosViewModel();
-    }
+    public void StartWizard() => Router.Navigate.Execute(new GeneralInfosViewModel(this));
 }

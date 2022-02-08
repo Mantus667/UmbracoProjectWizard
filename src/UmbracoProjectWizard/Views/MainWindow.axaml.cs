@@ -1,9 +1,8 @@
+namespace UmbracoProjectWizard.Views;
 using Avalonia;
 using Avalonia.Markup.Xaml;
 using Avalonia.ReactiveUI;
 using UmbracoProjectWizard.ViewModels;
-
-namespace UmbracoProjectWizard.Views;
 
 public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
@@ -16,8 +15,5 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 #endif
     }
 
-    private void InitializeComponent()
-    {
-        AvaloniaXamlLoader.Load(this);
-    }
+    private void InitializeComponent() => AvaloniaXamlLoader.Load(this);
 }

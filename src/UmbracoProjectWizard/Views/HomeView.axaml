@@ -2,25 +2,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+			 xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+             xmlns:system="clr-namespace:System;assembly=System.Runtime.Extensions"
+			 xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+			 xmlns:assists="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
+			 mc:Ignorable="d"
              x:Class="UmbracoProjectWizard.Views.HomeView">
-	
-	
-	<StackPanel VerticalAlignment="Center" Classes="Hero">
-		<TextBlock Classes="h1" Margin="0 0 0 15"
-			HorizontalAlignment="Center"
-				VerticalAlignment="Center">
-			Umbraco Project Wizard
+
+	<StackPanel Margin="16, 16" MaxWidth="800" VerticalAlignment="Center">
+		<StackPanel.Styles>
+			<Style Selector="TextBlock.Content, TextBlock.Subheadline">
+				<Setter Property="HorizontalAlignment" Value="Stretch"/>
+				<Setter Property="TextAlignment" Value="Center"/>
+				<Setter Property="TextWrapping" Value="Wrap"/>
+				<Setter Property="Margin" Value="0, 10" />
+			</Style>
+		</StackPanel.Styles>
+		<avalonia:MaterialIcon Kind="WizardHat" Width="100" Height="100" />
+		<TextBlock Classes="Headline2 Subheadline" Text="Umbraco Project Wizard" />
+		<TextBlock Classes="Content" FontSize="24" HorizontalAlignment="Center">
+			👋 Welcome! This wizard helps you create Umbraco projects by using the dotnet cli. It let's you set all flags for the Umbraco template. Also you can specify packages, that should be installed, after the project is created. All in a nice UI.
 		</TextBlock>
-		<TextBlock HorizontalAlignment="Center"
-				VerticalAlignment="Center"
-				Foreground="Orange">
-This wizard helps you create Umbraco projects by using the dotnet cli.
-It let's you set all flags for the Umbraco template. Also you can specify packages,
-that should be installed, after the project is created. All in a nice UI.
-		</TextBlock>
-		<Button Margin="0 15 0 0" HorizontalAlignment="Center"
-			Background="LightGreen"
-			Command="{Binding $parent[Window].DataContext.StartWizard}">Start Wizard</Button>
+		<Button Margin="0 10 0 0" HorizontalAlignment="Center"
+			Command="{Binding $parent[Window].DataContext.StartWizard}"
+			Content="Start Wizard"
+			ToolTip.Tip='Start Wizard.' />
 	</StackPanel>
 </UserControl>
