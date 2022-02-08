@@ -13,7 +13,15 @@ public class MainWindowViewModel : ReactiveObject, IScreen
 
     public RoutingState Router { get; } = new RoutingState();
 
-    //public void ShowHomeView() => Content = new HomeViewModel();
+    public void ShowHomeView() => Router.Navigate.Execute(new HomeViewModel(this));
 
     public void StartWizard() => Router.Navigate.Execute(new GeneralInfosViewModel(this));
+
+    public void ShowUnattendedInstall() => Router.Navigate.Execute(new UnattendedInstallViewModel(this));
+
+    public void ShowPackages() => Router.Navigate.Execute(new PackagesViewModel(this));
+
+    public void ShowProjectCreation() => Router.Navigate.Execute(new ProjectCreationViewModel(this));
+
+    public void GoBack() => Router.NavigateBack.Execute();
 }

@@ -20,10 +20,9 @@
 			<ToggleSwitch Classes="LeftHeader" Content="Add https redirect" ToolTip.Tip='Select if you want to add https redirection.' />
 			<TextBox UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Custom Empty install view" />
 			<Grid>
-				<Button Command="{Binding $parent[Window].DataContext.ShowHomeView}"
-				HorizontalAlignment="Left" Content="Back"
-				Grid.Row="0" Grid.Column="0"/>
-				<Button HorizontalAlignment="Right" Content="Next" Grid.Row="0" Grid.Column="1"/>
+				<Button Command="{Binding $parent[Window].DataContext.GoBack}"
+				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
+				<Button HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding $parent[Window].DataContext.ShowUnattendedInstall}" />
 			</Grid>
 		</StackPanel>
 	</StackPanel>

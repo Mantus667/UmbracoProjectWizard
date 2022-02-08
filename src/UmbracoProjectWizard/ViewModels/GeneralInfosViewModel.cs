@@ -1,6 +1,4 @@
-﻿namespace UmbracoProjectWizard.ViewModels;
-
-using System;
+namespace UmbracoProjectWizard.ViewModels;
 using ReactiveUI;
 
 public class GeneralInfosViewModel : ReactiveObject, IRoutableViewModel
@@ -9,7 +7,7 @@ public class GeneralInfosViewModel : ReactiveObject, IRoutableViewModel
 
     public GeneralInfosViewModel(IScreen screen) => HostScreen = screen;
 
-    public string? UrlPathSegment { get; } = Guid.NewGuid().ToString()[..5];
+    public string? UrlPathSegment { get; } = nameof(GeneralInfosViewModel);
 
     public IScreen HostScreen { get; }
 }
