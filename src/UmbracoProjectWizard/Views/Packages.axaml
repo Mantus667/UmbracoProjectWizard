@@ -19,7 +19,7 @@ xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
             <Grid>
                 <Button Command="{Binding $parent[Window].DataContext.GoBack}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
-                <Button HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding $parent[Window].DataContext.ShowProjectCreation}" />
+                <Button HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding Save}" />
             </Grid>
         </StackPanel>
     </StackPanel>
