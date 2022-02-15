@@ -1,6 +1,8 @@
 namespace UmbracoProjectWizard.ViewModels;
 
+using System.Collections.Generic;
 using System.Reactive;
+using Avalonia.Controls;
 using ReactiveUI;
 using ReactiveUI.Validation.Extensions;
 using ReactiveUI.Validation.Helpers;
@@ -8,12 +10,19 @@ using ReactiveUI.Validation.Helpers;
 public class GeneralInfosViewModel : ReactiveValidationObject, IRoutableViewModel
 {
     //private readonly WizardContext _wizardContext;
+    public static List<string> UmbracoVersions => new() { "9.0.0", "9.1.0", "9.2.0", "9.3.0" };
 
     public GeneralInfosViewModel(IScreen screen)
     {
         HostScreen = screen;
         Save = ReactiveCommand.Create(SaveImplementation, this.IsValid());
+        _projectName = string.Empty;
+        _outputPath = string.Empty;
+        _umbracoVersion = "9.3.0";
+        _customEmptyScreen = string.Empty;
+#if DEBUG
         OutputPath = "dfdf";
+#endif
 
         this.ValidationRule(
             viewModel => viewModel.Projectname,
@@ -27,7 +36,7 @@ public class GeneralInfosViewModel : ReactiveValidationObject, IRoutableViewMode
 
         this.ValidationRule(
             viewModel => viewModel.UmbracoVersion,
-            this.WhenAnyValue(vm => vm.UmbracoVersion, version => !string.IsNullOrWhiteSpace(version)),
+            this.WhenAnyValue(x => x.UmbracoVersion, version => !string.IsNullOrWhiteSpace(version)),
             "You must specify a version");
     }
 
@@ -51,8 +60,14 @@ public class GeneralInfosViewModel : ReactiveValidationObject, IRoutableViewMode
     private bool _useProjectnameAsDirectory;
     public bool UseProjectnameAsDirectory { get => _useProjectnameAsDirectory; set => this.RaiseAndSetIfChanged(ref _useProjectnameAsDirectory, value); }
 
+    private bool _addSolutionFile;
+    public bool AddSolutionFile { get => _addSolutionFile; set => this.RaiseAndSetIfChanged(ref _addSolutionFile, value); }
+
     private string _umbracoVersion;
-    public string UmbracoVersion { get => _umbracoVersion; set => this.RaiseAndSetIfChanged(ref _umbracoVersion, value); }
+    public string UmbracoVersion {
+        get => _umbracoVersion;
+        set => this.RaiseAndSetIfChanged(ref _umbracoVersion, value);
+    }
 
     private bool _useSQLCE;
     public bool UseSQLCE { get => _useSQLCE; set => this.RaiseAndSetIfChanged(ref _useSQLCE, value); }

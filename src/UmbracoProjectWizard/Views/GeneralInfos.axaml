@@ -4,26 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
 			 xmlns:wpf="clr-namespace:Material.Styles.Assists;assembly=Material.Styles"
-			 mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="800"
+             mc:Ignorable="d" d:DesignWidth="900" d:DesignHeight="800"
              x:Class="UmbracoProjectWizard.Views.GeneralInfosView">
-	<StackPanel>
-		<TextBlock Classes="Headline3" Text="General Information" HorizontalAlignment="Center"/>
-		<StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20, 0">
-			<TextBox Text="{Binding Projectname}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Projectname" />
-			<Grid HorizontalAlignment="Stretch" RowDefinitions="Auto" ColumnDefinitions="*,Auto">
-				<TextBox Text="{Binding OutputPath}" Grid.Row="0" Grid.Column="0" IsReadOnly="True" UseFloatingWatermark="False" Watermark="Output Location" Classes="Filled" IsEnabled="False" wpf:TextFieldAssist.Label="Output Folder" />
-				<Button Classes="Flat" Grid.Row="0" Grid.Column="1">Select Folder</Button>
-			</Grid>
-			<ToggleSwitch IsChecked="{Binding UseProjectnameAsDirectory}" Classes="LeftHeader" Content="Use Projectname as folder" ToolTip.Tip='Should the projectname be added to the output folder.' />
-			<TextBox Text="{Binding UmbracoVersion}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Umbraco Version" />
-			<ToggleSwitch IsChecked="{Binding UseSQLCE}" Classes="LeftHeader" Content="Use SQLCE" ToolTip.Tip='Select if you want to use SQLCE in this project.' />
-			<ToggleSwitch IsChecked="{Binding AddHttps}" Classes="LeftHeader" Content="Add https redirect" ToolTip.Tip='Select if you want to add https redirection.' />
-			<TextBox Text="{Binding CustomEmptyScreen}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Custom Empty install view" />
-			<Grid>
-				<Button Command="{Binding $parent[Window].DataContext.GoBack}"
+    <StackPanel>
+        <TextBlock Classes="Headline3" Text="General Information" HorizontalAlignment="Center"/>
+        <StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20, 0">
+            <TextBox Text="{Binding Projectname}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Projectname" />
+            <Grid HorizontalAlignment="Stretch" RowDefinitions="Auto" ColumnDefinitions="*,Auto">
+                <TextBox Text="{Binding OutputPath}" Grid.Row="0" Grid.Column="0" IsReadOnly="True" UseFloatingWatermark="False" Watermark="Output Location" Classes="Filled" IsEnabled="False" wpf:TextFieldAssist.Label="Output Folder" />
+                <Button Classes="Flat" Grid.Row="0" Grid.Column="1">Select Folder</Button>
+            </Grid>
+            <ToggleSwitch IsChecked="{Binding AddSolutionFile}" Classes="LeftHeader" Content="Add solution file" ToolTip.Tip='Should a solution file be generated.' />
+            <ToggleSwitch IsChecked="{Binding UseProjectnameAsDirectory}" Classes="LeftHeader" Content="Use Projectname as folder" ToolTip.Tip='Should the projectname be added to the output folder.' />
+            <ComboBox x:Name="AvailableVersions" Items="{Binding UmbracoVersions}" wpf:ComboBoxAssist.Label="Umbraco Version" SelectedItem="{Binding UmbracoVersion, Mode=TwoWay}" Classes="Outline" />
+            <ToggleSwitch IsChecked="{Binding UseSQLCE}" Classes="LeftHeader" Content="Use SQLCE" ToolTip.Tip='Select if you want to use SQLCE in this project.' />
+            <ToggleSwitch IsChecked="{Binding AddHttps}" Classes="LeftHeader" Content="Add https redirect" ToolTip.Tip='Select if you want to add https redirection.' />
+            <TextBox Text="{Binding CustomEmptyScreen}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Custom Empty install view" />
+            <Grid>
+                <Button Command="{Binding $parent[Window].DataContext.GoBack}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
-				<Button HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding Save}" />
-			</Grid>
-		</StackPanel>
-	</StackPanel>
+                <Button HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding Save}" />
+            </Grid>
+        </StackPanel>
+    </StackPanel>
 </UserControl>
