@@ -1,0 +1,38 @@
+- Name: StarterKits
+  Packages:
+    - NugetName: Clean
+      PackageName: Clean Starter
+    - NugetName: Umbraco.TheStarterKit
+      PackageName: The Starter Kit
+    - NugetName: LittleNorth.Igloo
+      PackageName: Igloo Theme
+- Name: Developer
+  Packages:
+    - NugetName: uSync
+      PackageName: uSync
+    - NugetName: uSync.Complete
+      PackageName: uSync.Complete
+    - NugetName: Umbraco.Forms
+      PackageName: Umbraco Forms
+    - NugetName: Konstrukt
+      PackageName: Konstrukt
+- Name: Utilities
+  Packages:
+    - NugetName: Skybrud.Umbraco.Redirects
+      PackageName: Skybrud Redirects
+    - NugetName: Vendr
+      PackageName: Vendr
+    - NugetName: Our.Umbraco.Skipper
+      PackageName: Skipper
+    - NugetName: UmbracoPersonalisationGroups
+      PackageName: Personalisation Groups
+- Name: Backoffice Extensions
+  Packages:
+    - NugetName: Our.Umbraco.Community.Contentment
+      PackageName: Contentment
+    - NugetName: Jumoo.TranslationManager
+      PackageName: Translation Manager
+    - NugetName: Our.Umbraco.TheDashboard
+      PackageName: The Dashboard
+    - NugetName: AutoDictionaries
+      PackageName: Auto dictionaries

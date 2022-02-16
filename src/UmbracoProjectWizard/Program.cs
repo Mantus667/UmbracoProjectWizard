@@ -1,4 +1,4 @@
-﻿namespace UmbracoProjectWizard;
+namespace UmbracoProjectWizard;
 using Avalonia;
 using Avalonia.ReactiveUI;
 using Splat;
