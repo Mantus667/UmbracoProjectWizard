@@ -11,8 +11,8 @@
         <StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20, 0">
             <TextBox Text="{Binding Projectname}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Projectname" />
             <Grid HorizontalAlignment="Stretch" RowDefinitions="Auto" ColumnDefinitions="*,Auto">
-                <TextBox Text="{Binding OutputPath}" Grid.Row="0" Grid.Column="0" IsReadOnly="True" UseFloatingWatermark="False" Watermark="Output Location" Classes="Filled" IsEnabled="False" wpf:TextFieldAssist.Label="Output Folder" />
-                <Button Classes="Flat" Grid.Row="0" Grid.Column="1">Select Folder</Button>
+                <TextBox Text="{Binding OutputPath}" Grid.Column="0" IsReadOnly="True" UseFloatingWatermark="False" Watermark="Output Location" Classes="Filled" IsEnabled="False" wpf:TextFieldAssist.Label="Output Folder" />
+                <Button Classes="Flat" Grid.Column="1" Command="{Binding OpenFolder}" CommandParameter="{Binding $parent[Window]}">Select Folder</Button>
             </Grid>
             <ToggleSwitch IsChecked="{Binding AddSolutionFile}" Classes="LeftHeader" Content="Add solution file" ToolTip.Tip='Should a solution file be generated.' />
             <ToggleSwitch IsChecked="{Binding UseProjectnameAsDirectory}" Classes="LeftHeader" Content="Use Projectname as folder" ToolTip.Tip='Should the projectname be added to the output folder.' />

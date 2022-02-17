@@ -8,8 +8,8 @@ public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
 {
     public MainWindow()
     {
-        InitializeComponent();
         GlobalCommand.UseMaterialUIDarkTheme();
+        InitializeComponent();
 #if DEBUG
         this.AttachDevTools();
 #endif
