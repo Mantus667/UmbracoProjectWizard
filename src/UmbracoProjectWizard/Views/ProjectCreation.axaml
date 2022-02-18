@@ -7,6 +7,8 @@
     <StackPanel>
         <TextBlock Classes="Headline3" Text="Project Creation" HorizontalAlignment="Center"/>
         <StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20, 0">
+            <ProgressBar Margin="0 50" Value="{Binding Progress}" />
+            <TextBlock Text="{Binding CurrentTask}"/>
             <Grid>
                 <Button Command="{Binding $parent[Window].DataContext.GoBack}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>

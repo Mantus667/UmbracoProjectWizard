@@ -13,7 +13,9 @@
             <TreeView Name="PackageSelectionTree" Items="{Binding AvailablePackages}" SelectionMode="Multiple,Toggle">
                 <TreeView.DataTemplates>
                     <TreeDataTemplate DataType="models:UmbracoPackageCategory" ItemsSource="{Binding Packages}">
-                        <TextBlock Foreground="Red" Text="{Binding Name}" />
+                        <styles:ColorZone Mode="Accent">
+                            <TextBlock Text="{Binding Name}" />
+                        </styles:ColorZone>
                     </TreeDataTemplate>
                     <DataTemplate DataType="models:UmbracoPackage">
                         <TextBlock Text="{Binding PackageName}" />

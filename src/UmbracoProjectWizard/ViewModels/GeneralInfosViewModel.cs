@@ -1,5 +1,6 @@
 namespace UmbracoProjectWizard.ViewModels;
 
+using System;
 using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Linq;
@@ -8,15 +9,25 @@ using Avalonia.Controls;
 using ReactiveUI;
 using ReactiveUI.Validation.Extensions;
 using ReactiveUI.Validation.Helpers;
+using Splat;
+using UmbracoProjectWizard.Services;
 
 public class GeneralInfosViewModel : ReactiveValidationObject, IRoutableViewModel
 {
     //private readonly WizardContext _wizardContext;
     public static List<string> UmbracoVersions => new() { "9.0.0", "9.1.0", "9.2.0", "9.3.0" };
+    private readonly IWizardContextProvider _wizardContextProvider;
 
     public GeneralInfosViewModel(IScreen screen)
+        : this(screen, Locator.Current.GetService<IWizardContextProvider>()) { }
+
+    public GeneralInfosViewModel(IScreen screen, IWizardContextProvider wizardContextProvider)
     {
+        ArgumentNullException.ThrowIfNull(screen, nameof(screen));
+        ArgumentNullException.ThrowIfNull(wizardContextProvider, nameof(wizardContextProvider));
+
         HostScreen = screen;
+        _wizardContextProvider = wizardContextProvider;
         Save = ReactiveCommand.Create(SaveImplementation, this.IsValid());
         _projectName = string.Empty;
         _outputPath = string.Empty;
@@ -45,7 +56,22 @@ public class GeneralInfosViewModel : ReactiveValidationObject, IRoutableViewMode
     public IScreen HostScreen { get; }
 
     public ReactiveCommand<Unit, Unit> Save { get; set; }
-    public void SaveImplementation() => HostScreen.Router.Navigate.Execute(new UnattendedInstallViewModel(HostScreen));
+    public void SaveImplementation()
+    {
+        _wizardContextProvider.CreateWizardContext();
+        var context = _wizardContextProvider.GetWizardContext();
+        context
+            .SetProjectName(Projectname)
+            .SetOutputPath(OutputPath)
+            .SetEmptyScreenPath(CustomEmptyScreen)
+            .SetCreateSolutionFile(AddSolutionFile)
+            .SetAddProjectNameToOutput(UseProjectnameAsDirectory)
+            .SetUmbracoVersion(UmbracoVersion)
+            .SetUseHttpsRedirect(AddHttps)
+            .SetUseSQLCE(UseSQLCE);
+
+        HostScreen.Router.Navigate.Execute(new UnattendedInstallViewModel(HostScreen));
+    }
 
     private string _projectName;
     public string Projectname

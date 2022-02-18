@@ -1,15 +1,32 @@
 namespace UmbracoProjectWizard.ViewModels;
+
+using System;
 using System.Reactive;
 using ReactiveUI;
 using ReactiveUI.Validation.Extensions;
 using ReactiveUI.Validation.Helpers;
+using Splat;
+using UmbracoProjectWizard.Services;
 
 public class UnattendedInstallViewModel : ReactiveValidationObject, IRoutableViewModel
 {
+    private readonly IWizardContextProvider _wizardContextProvider;
+
     public UnattendedInstallViewModel(IScreen screen)
+        : this(screen, Locator.Current.GetService<IWizardContextProvider>()) { }
+
+    public UnattendedInstallViewModel(IScreen screen, IWizardContextProvider wizardContextProvider)
     {
+        ArgumentNullException.ThrowIfNull(screen, nameof(screen));
+        ArgumentNullException.ThrowIfNull(wizardContextProvider, nameof(wizardContextProvider));
+
         HostScreen = screen;
-        UseUnattendedInstall = false;
+        _wizardContextProvider = wizardContextProvider;
+        _useUnattendedInstall = false;
+        _friendlyName = string.Empty;
+        _email = string.Empty;
+        _password = string.Empty;
+        _connectionString = string.Empty;
         Save = ReactiveCommand.Create(SaveImplementation, this.IsValid());
 
         var nameObservable = this
@@ -62,7 +79,16 @@ public class UnattendedInstallViewModel : ReactiveValidationObject, IRoutableVie
     public IScreen HostScreen { get; }
 
     public ReactiveCommand<Unit, Unit> Save { get; set; }
-    public void SaveImplementation() => HostScreen.Router.Navigate.Execute(new PackagesViewModel(HostScreen));
+    public void SaveImplementation()
+    {
+        var context = _wizardContextProvider.GetWizardContext();
+        context.SetUseUnattendedInstall(UseUnattendedInstall)
+            .SetFriendlyName(FriendlyName)
+            .SetEmail(Email)
+            .SetPassword(Password)
+            .SetConnectionString(ConnectionString);
+        HostScreen.Router.Navigate.Execute(new PackagesViewModel(HostScreen));
+    }
 
     private bool _useUnattendedInstall;
     public bool UseUnattendedInstall { get => _useUnattendedInstall; set => this.RaiseAndSetIfChanged(ref _useUnattendedInstall, value); }
