@@ -39,7 +39,7 @@
             <Grid ColumnDefinitions="*,*">
                 <Button Command="{Binding $parent[Window].DataContext.GoBack}" IsVisible="{Binding !CreationStarted}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
-                <Button Command="{Binding StartCreation}" IsEnabled="{Binding !CreationStarted, Mode= OneWay}"
+                <Button Classes="Accent" Command="{Binding StartCreation}" IsEnabled="{Binding !CreationStarted, Mode= OneWay}"
 				HorizontalAlignment="Right" Content="Start" Grid.Column="1"/>
             </Grid>
         </StackPanel>

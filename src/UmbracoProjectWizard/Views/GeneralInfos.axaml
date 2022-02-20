@@ -23,7 +23,7 @@
             <Grid>
                 <Button Command="{Binding $parent[Window].DataContext.GoBack}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
-                <Button HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding Save}" />
+                <Button Classes="Accent" HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding Save}" />
             </Grid>
         </StackPanel>
     </StackPanel>

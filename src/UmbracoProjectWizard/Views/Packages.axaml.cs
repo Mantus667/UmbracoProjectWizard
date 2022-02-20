@@ -23,6 +23,7 @@ public partial class Packages : ReactiveUserControl<PackagesViewModel>
         {
             return;
         }
+        
         foreach (var removedItem in e.RemovedItems.OfType<UmbracoPackage>())
         {
             ViewModel.SelectedPackages.Remove(removedItem);

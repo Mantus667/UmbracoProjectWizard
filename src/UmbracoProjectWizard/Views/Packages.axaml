@@ -9,23 +9,23 @@
              x:Class="UmbracoProjectWizard.Views.Packages">
     <StackPanel>
         <TextBlock Classes="Headline3" Text="Packages" HorizontalAlignment="Center"/>
-        <StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20, 0">
-            <TreeView Name="PackageSelectionTree" Items="{Binding AvailablePackages}" SelectionMode="Multiple,Toggle">
-                <TreeView.DataTemplates>
-                    <TreeDataTemplate DataType="models:UmbracoPackageCategory" ItemsSource="{Binding Packages}">
-                        <styles:ColorZone Mode="Accent">
+        <StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20, 20">
+            <styles:Card>
+                <TreeView Name="PackageSelectionTree" Items="{Binding AvailablePackages}" SelectionMode="Multiple,Toggle">
+                    <TreeView.DataTemplates>
+                        <TreeDataTemplate DataType="models:UmbracoPackageCategory" ItemsSource="{Binding Packages}">
                             <TextBlock Text="{Binding Name}" />
-                        </styles:ColorZone>
-                    </TreeDataTemplate>
-                    <DataTemplate DataType="models:UmbracoPackage">
-                        <TextBlock Text="{Binding PackageName}" />
-                    </DataTemplate>
-                </TreeView.DataTemplates>
-            </TreeView>
+                        </TreeDataTemplate>
+                        <DataTemplate DataType="models:UmbracoPackage">
+                            <TextBlock Text="{Binding PackageName}" />
+                        </DataTemplate>
+                    </TreeView.DataTemplates>
+                </TreeView>
+            </styles:Card>
             <Grid>
                 <Button Command="{Binding $parent[Window].DataContext.GoBack}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
-                <Button HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding Save}" />
+                <Button Classes="Accent" HorizontalAlignment="Right" Content="Next" Grid.Column="1" Command="{Binding Save}" />
             </Grid>
         </StackPanel>
     </StackPanel>

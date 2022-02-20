@@ -12,12 +12,12 @@
             <ToggleSwitch IsChecked="{Binding UseUnattendedInstall}" Classes="LeftHeader" Content="Use unattended install" ToolTip.Tip='Do you plan on using unattended install?' />
             <TextBox Text="{Binding FriendlyName}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Friendly username" />
             <TextBox Text="{Binding Email}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Email" />
-            <TextBox Text="{Binding Password}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Password" />
+            <TextBox Text="{Binding Password}" PasswordChar="*" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Password" />
             <TextBox Text="{Binding ConnectionString}" UseFloatingWatermark="True" Classes="Filled" wpf:TextFieldAssist.Label="Connectionstring" />
             <Grid>
                 <Button Command="{Binding $parent[Window].DataContext.GoBack}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
-                <Button HorizontalAlignment="Right" Content="Next" Command="{Binding Save}" Grid.Column="1"/>
+                <Button Classes="Accent" HorizontalAlignment="Right" Content="Next" Command="{Binding Save}" Grid.Column="1"/>
             </Grid>
         </StackPanel>
     </StackPanel>
