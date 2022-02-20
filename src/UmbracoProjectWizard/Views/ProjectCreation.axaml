@@ -2,16 +2,45 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:styles="clr-namespace:Material.Styles;assembly=Material.Styles"
+             xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="UmbracoProjectWizard.Views.ProjectCreation">
     <StackPanel>
         <TextBlock Classes="Headline3" Text="Project Creation" HorizontalAlignment="Center"/>
-        <StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20, 0">
-            <ProgressBar Margin="0 50" Value="{Binding Progress}" />
-            <TextBlock Text="{Binding CurrentTask}"/>
-            <Grid>
-                <Button Command="{Binding $parent[Window].DataContext.GoBack}"
+        <StackPanel HorizontalAlignment="Stretch" Spacing="15" Margin="20,20">
+            <styles:Card>
+                <ItemsControl Items="{Binding TaskItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.DataTemplates>
+                        <DataTemplate>
+                            <Panel>
+                                <styles:Card>
+                                    <Grid ColumnDefinitions="50,*">
+                                        <styles:Card CornerRadius="24" Padding="4" Margin="4" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Panel>
+                                                <ProgressBar Grid.Column="0" Classes="Circle" IsVisible="{Binding !IsFinished}" IsIndeterminate="{Binding IsRunning}" Value="{Binding Value}" />
+                                                <avalonia:MaterialIcon FontSize="18" Foreground="Green" Grid.Column="0" Kind="CheckDecagram" IsVisible="{Binding IsFinished}" />
+                                            </Panel>
+                                        </styles:Card>
+                                        <TextBlock Margin="20 0 0 0" FontSize="18" VerticalAlignment="Center" Grid.Column="1" Text="{Binding TaskName}" />
+                                    </Grid>
+                                </styles:Card>
+                            </Panel>
+                        </DataTemplate>
+                    </ItemsControl.DataTemplates>
+                </ItemsControl>
+            </styles:Card>
+            <TextBlock Foreground="Red" Text="{Binding ErrorLog}" />
+            <Grid ColumnDefinitions="*,*">
+                <Button Command="{Binding $parent[Window].DataContext.GoBack}" IsVisible="{Binding !CreationStarted}"
 				HorizontalAlignment="Left" Content="Back" Grid.Column="0"/>
+                <Button Command="{Binding StartCreation}" IsEnabled="{Binding !CreationStarted, Mode= OneWay}"
+				HorizontalAlignment="Right" Content="Start" Grid.Column="1"/>
             </Grid>
         </StackPanel>
     </StackPanel>
